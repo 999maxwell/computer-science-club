@@ -1,5 +1,5 @@
 # Breadth-First Search
-Let's say we wanted to find out the minimum number of steps the knight could take to get to the pawn. ![Chess board](https://i.imgur.com/8bBKZAz.png)
+Let's say we wanted to find out the minimum number of steps the knight could take to get to the pawn. ![Chess board](https://i.imgur.com/8bBKZAz.png){:height="50%" width="50%"}
 
 We could probably determine the answer to this problem fairly quickly in our head. But how would we use a computer to solve this problem efficiently?
 
