@@ -17,7 +17,13 @@ Its neighbors, or surrounding nodes, are then scanned and added to the queue as 
 
 <img src="tree2.png" height="200">
 
- After doing so, the tree node is then removed from the queue, and the next node in the queue is scanned for neighbors as well. This process continues until all nodes have been checked.
+After doing so, the tree node is then removed from the queue, and the next node in the queue is scanned for neighbors as well. This process continues until all nodes have been checked.
 
- <img src="tree3.png" height="200">
+<img src="tree3.png" height="200">
+
+<img src="tree4.png" height="200">
+
+<img src="tree5.png" height="200">
+
+<img src="tree6.png" height="200">
 <!-- 46ff00ff (green) 6a6a6aff (grey) fcff00ff (yellow)-->
