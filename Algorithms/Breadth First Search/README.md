@@ -21,3 +21,45 @@ After doing so, the tree node is then removed from the queue, and the next node 
 
 <img src="tree3.png" height="200"> <img src="tree4.png" height="200"> <img src="tree5.png" height="200"> <img src="tree6.png" height="200">
 <!-- 46ff00ff (green) 6a6a6aff (grey) fcff00ff (yellow)-->
+So how does this allow us to find the minimum number of steps from one node to another? We can implement a "step" or "distance" system to keep track of the distances of every node in relation to the tree node.
+
+<img src="treestep.png" height="200">
+
+# Implementation
+
+Now that we have the theory covered, we can explore a simple implementation of BFS which can serve as a template for most CCC searching problems. 
+
+Most of the BFS problems that one would encounter at CCC would likely include a grid-like map where the distance between one point to another point must be found, with certain modifications and conditions. This means that we can store the map (if necessary) and the step values on 2D arrays. The queue could be stored on two LinkedLists to make the queue two-dimensional (one for rows, one for columns).
+```Java
+Scanner sc = new Scanner(System.in);
+int N = sc.nextInt(); //size of grid (assuming it is square)
+LinkedList<Integer> rowQueue = new LinkedList<Integer>();
+LinkedList<Integer> colQueue = new LinkedList<Integer>();
+rowQueue.add(rowStart); //add integer value of row of starting point to queue
+colQueue.add(colStart); //add integer value of column of starting point to queue
+int[][] step = new int[N][N];
+for (int i = 0; i < N; i++) {
+    Arrays.fill(step[i], Integer.MAX_VALUE); //fills entire 2D step array with maximum integer value; will be updated as graph is traversed
+}
+step[rowStart][colStart] = 0; //distance from starting point is 0
+while (!rowQueue.isEmpty()) { //while the queue still contains values
+    int r = rowQueue.poll(); //poll() extracts and removes first item (0th index) from queue (following FIFO method)
+    int c = colQueue.poll();
+    //CHECKING NEIGHBORS: check r - 1 (check the neighbor grid above)
+    if (r - 1 >= 0 && step[r - 1][c] > step[r][c] + 1) { //checking if there neighbor grid above is out of bounds
+        /*
+        (step[r - 1][c] > step[r][c] + 1) checks if neighbor grid above has a higher step value than current grid
+        if it does, update graph (to current grid step + 1) to ensure lowest possible step value and add to queue
+        if it doesn't, don't update graph to maintain possible step value and don't add to queue
+        */
+        rowQueue.add(r - 1);
+        rowQueue.add(c);
+        step[r - 1][c] = step[r][c] + 1;
+    }
+    //repeat neighbor check for other directions (r - 1: up; c + 1; right; r + 1; down; c - 1; left)
+}
+
+int rowEnd = sc.nextInt();
+int colEnd = sc.nextInt();
+System.out.println(step[rowEnd][colEnd]); //find distance (step value) of destination point
+```
