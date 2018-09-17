@@ -31,8 +31,15 @@ Now that we have the theory covered, we can explore a simple implementation of B
 
 Most of the BFS problems that one would encounter at CCC would likely include a grid-like map where the distance between one point to another point must be found, with certain modifications and conditions. This means that we can store the map (if necessary) and the step values on 2D arrays. The queue could be stored on two LinkedLists to make the queue two-dimensional (one for rows, one for columns).
 ```Java
+//INPUT
 Scanner sc = new Scanner(System.in);
 int N = sc.nextInt(); //size of grid (assuming it is square)
+int rowStart = sc.nextInt(); //integer value of row of starting point
+int colStart = sc.nextInt(); //add integer value of column of destination point
+int rowEnd = sc.nextInt(); //integer value of row of starting point
+int colEnd = sc.nextInt(); //integer value of column of destination point
+
+//SETUP QUEUES AND STEP ARRAY
 LinkedList<Integer> rowQueue = new LinkedList<Integer>();
 LinkedList<Integer> colQueue = new LinkedList<Integer>();
 rowQueue.add(rowStart); //add integer value of row of starting point to queue
@@ -42,6 +49,8 @@ for (int i = 0; i < N; i++) {
     Arrays.fill(step[i], Integer.MAX_VALUE); //fills entire 2D step array with maximum integer value; will be updated as graph is traversed
 }
 step[rowStart][colStart] = 0; //distance from starting point is 0
+
+//START BFS
 while (!rowQueue.isEmpty()) { //while the queue still contains values
     int r = rowQueue.poll(); //poll() extracts and removes first item (0th index) from queue (following FIFO method)
     int c = colQueue.poll();
@@ -59,7 +68,19 @@ while (!rowQueue.isEmpty()) { //while the queue still contains values
     //repeat neighbor check for other directions (r - 1: up; c + 1; right; r + 1; down; c - 1; left)
 }
 
-int rowEnd = sc.nextInt();
-int colEnd = sc.nextInt();
+//OUTPUT
 System.out.println(step[rowEnd][colEnd]); //find distance (step value) of destination point
 ```
+For more information and an alternative implementation, [click here](https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/).
+
+# Exercises
+### Easy
+[CCC '98 S5 - Mountain Passage](https://dmoj.ca/problem/ccc98s5)  
+[CCC '10 J5 - Knight Hop](https://dmoj.ca/problem/ccc10j5)  
+[The Great Escape](https://dmoj.ca/problem/valday15p3)  
+### Medium
+[Biridian Forest](https://codeforces.com/problemset/problem/329/B)  
+[CCC '18 J5 - Choose your own path](https://dmoj.ca/src/821593)  
+[DWITE '10 R4 #4 - Mountain Hiking](https://dmoj.ca/problem/dwite10c4p4)   
+### Hard
+[CCC '18 S3 - RoboThieves](https://dmoj.ca/problem/ccc18s3)
